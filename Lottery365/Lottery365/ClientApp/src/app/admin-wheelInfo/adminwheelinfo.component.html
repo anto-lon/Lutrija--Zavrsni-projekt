@@ -1,0 +1,24 @@
+<div class="container py-5">
+
+  <h3 class="text-left">Wheel Details</h3>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr class="text-center text-uppercase">
+        <th>Id</th>
+        <th>Wheel Number</th>
+        <th>Draw Date</th>
+        <th>DrawNumbers</th>
+        <th>Winners</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let details of wheelInfo">
+        <td>{{details.id}}</td>
+        <td>{{details.wheelNumber}}</td>
+        <td>{{details.drawDate}}</td>
+        <td>{{details.drawNumbers}}</td>
+        <td>{{details.winners}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

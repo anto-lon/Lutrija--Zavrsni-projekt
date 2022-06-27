@@ -1,0 +1,43 @@
+<header>
+  <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <div class="container">
+      <a class="navbar-brand" [routerLink]="['/']">Lottery365</a>
+      <button class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target=".navbar-collapse"
+              aria-label="Toggle navigation"
+              [attr.aria-expanded]="isExpanded"
+              (click)="toggle()">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse"
+           [ngClass]="{ show: isExpanded }">
+        <ul class="navbar-nav flex-grow">
+          <li class="nav-item"
+              [routerLinkActive]="['link-active']"
+              [routerLinkActiveOptions]="{ exact: true }">
+            <a class="nav-link text-dark" [routerLink]="" (click)="navigateToHome() " *ngIf="isUser">Home</a>
+            <a class="nav-link text-dark" [routerLink]="" (click)="navigateToHome()" *ngIf="isAdmin">Home</a>
+          </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-dark" [routerLink]="" (click)="navigatetoAdminDrawNumber()" *ngIf="isAdmin">Generate winning numbers</a>
+          </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-dark" [routerLink]="['/admin-user-details']" *ngIf="isAdmin">User Details</a>
+          </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-dark" [routerLink]="" (click)="navigateToWheelNumber()" *ngIf="isAdmin">New wheel</a>
+          </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-dark" [routerLink]="" (click)="generateUserLotteryTicket()" *ngIf="isUser">New ticket</a>
+          </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-dark" [routerLink]="" (click)="logout()" *ngIf="isUser">Log out</a>
+            <a class="nav-link text-dark" [routerLink]="" (click)="logout()" *ngIf="isAdmin">Log out</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

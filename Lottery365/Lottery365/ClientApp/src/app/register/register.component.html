@@ -1,0 +1,40 @@
+<div class="container" style="padding-top:40px;">
+  <div class="row">
+    <div class="col-sm-12 col-md-10 col-xl-8  mx-auto">
+      <div class="card mx-4">
+        <div class="card-body p-4">
+          <form name="form" (ngSubmit)="createUser(f)" #f="ngForm">
+            <h1 style="text-align:center">Register</h1>
+            <br />
+            <div class="input-group mb-1">
+              <input type="text" name="FirstName" [(ngModel)]="model.FirstName" class="form-control sty1" placeholder="First Name" required>
+            </div>
+            <div class="input-group mb-2">
+              <input type="text" name="LastName" [(ngModel)]="model.LastName" class="form-control sty1" placeholder="Last Name" required>
+            </div>
+            <div class="input-group mb-3">
+              <input type="text" name="EmailId" [(ngModel)]="model.EmailId" class="form-control sty1" placeholder="Email" required email #prmEmail="ngModel">
+              <div *ngIf="prmEmail.errors?.email">
+                Primary Email not valid.
+              </div>
+            </div>
+            <div class="input-group mb-4">
+              <input type="password" name="Passward" [(ngModel)]="model.Password" class="form-control"
+                     placeholder="Password">
+            </div>
+            <div>
+              <p style="color:#E92626;font-size:20px;font-weight:normal" Class="success" align="left">
+                {{errorMessage}}
+              </p>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <button type="submit" class="btn btn-primary px-4">Register</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>  

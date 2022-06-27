@@ -1,0 +1,42 @@
+<div class="page-content page-container" id="page-content">
+  <div class="padding">
+    <div class="row container d-flex justify-content-center">
+      <div class="col-lg-10 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h3 class="text-center">Generate Lottery Ticket</h3>
+            <h5 class="text-center">Enter any number between 1-49</h5>
+            <div class="table responsive">
+              <div style="overflow:auto">
+                <table class="table">
+                  <tbody>
+                    <tr>
+                      <td><input type="number" min="1" max="49" size="1" (change)="preventInput(val1)" name="number1" #val1 /></td>
+                      <td><input type="number" min="1" max="49" size="1" (change)="preventInput(val2)" name="number2" #val2 /></td>
+                      <td><input type="number" min="1" max="49" size="1" (change)="preventInput(val3)" name="number3" #val3 /></td>
+                      <td><input type="number" min="1" max="49" size="1" (change)="preventInput(val4)" name="number4" #val4 /></td>
+                      <td><input type="number" min="1" max="49" size="1" (change)="preventInput(val5)" name="number5" #val5 /></td>
+                      <td><input type="number" min="1" max="49" size="1" (change)="preventInput(val6)" name="number6" #val6 /></td>
+                      <td><button  class="btn btn-success" (click)="saveNumbers(val1.value,val2.value,val3.value,val4.value,val5.value,val6.value)">Save</button></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p style="color:#E92626;font-size:20px;font-weight:normal" Class="success" align="left">
+          {{errorMessage}}
+        </p>
+      </div>
+      <div>
+        <p style="color:#00ff21;font-size:20px;font-weight:normal" Class="success" align="left">
+          {{successMessage}}
+        </p>
+      </div>
+    </div>
+
+  </div>
+</div>

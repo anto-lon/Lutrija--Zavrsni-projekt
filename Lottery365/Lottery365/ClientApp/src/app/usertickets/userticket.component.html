@@ -1,0 +1,43 @@
+<div class="container py-5">
+  <h3 class="text-left">User Details</h3>
+  <table>
+    <tr>
+      <td>
+        FirstName: {{firstName}}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LastName: {{lastName}}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        EmailId: {{email}}
+      </td>
+    </tr>
+  </table>
+  <br />
+  <h3 class="text-left">User Ticket Details</h3>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr class="text-center text-uppercase">
+        <th>Ticket Number</th>
+        <th>Wheel Number</th>
+        <th>Draw Numbers</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let ticket of tickets">
+        <td>{{ticket.ticketNumber}}</td>
+        <td>{{ticket.wheelNumber}}</td>
+        <td>{{ticket.drawNumbers}}</td>
+        <td>{{ticket.status}}</td>
+        <td class="text-center"><button class="btn btn-primary px-4" (click)="printTicket(ticket)">Print</button></td>
+
+      </tr>
+    </tbody>
+  </table>
+</div>

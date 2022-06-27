@@ -1,0 +1,37 @@
+<div class="page-content page-container" id="page-content">
+  <div class="padding">
+    <div class="row container d-flex justify-content-center">
+      <div class="col-lg-8 grid-margin stretch-card">
+        <h3 class="text-center">Generate Lottery Numbers</h3>
+        <div style='text-align:center'>
+          <button class="text-center" (click)="getAdminDrawNumbers()">Click to generate</button>
+        </div>
+        <div style="overflow:auto">
+          <table class="table">
+            <tbody>
+              <tr *ngFor="let row of [0,1,2,3,4,5]">
+                <td *ngFor="let col of [0,1,2,3,4,5]">
+                  {{ adminDrawNumbers[6 * row + col] }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div *ngIf="showSaveButton" style="text-align:center">
+          <button (click)="saveAdminLotteryNumbers()">save</button>
+        </div>
+      </div>
+    </div>
+    <div>
+      <p style="color:#E92626;font-size:20px;font-weight:normal;text-align:center" Class="success" align="left">
+        {{errorMessage}}
+      </p>
+    </div>
+    <div>
+      <p style="color:#00ff21;font-size:20px;font-weight:normal;text-align:center" Class="success" align="left">
+        {{successMessage}}
+      </p>
+    </div>
+  </div>
+</div>
+

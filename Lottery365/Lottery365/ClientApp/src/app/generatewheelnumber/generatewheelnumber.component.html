@@ -1,0 +1,29 @@
+<div class="container" style="padding-top:40px;">
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+      <div class="card mx-4">
+        <div class="card-body p-4">
+          <form name="form" (ngSubmit)="createWheel()" #f="ngForm">
+            <h1 style="text-align:center">Create New Wheel</h1>
+            <div class="input-group mb-1">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="icon-user"></i></span>
+              </div>
+              <input type="date" name="DrawDate" [(ngModel)]="model.drawDate" class="form-control sty1" placeholder="Draw Date" required>
+            </div>
+            <div>
+              <p style="color:#E92626;font-size:20px;font-weight:normal" Class="success" align="left">
+                {{errorMessage}}
+              </p>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <button type="submit" class="btn btn-primary px-4">Create</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>  

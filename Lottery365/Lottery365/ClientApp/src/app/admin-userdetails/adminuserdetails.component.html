@@ -1,0 +1,25 @@
+
+<div class="container py-5">
+  <app-edit-role #modal></app-edit-role>
+  <h3 class="text-left">User Details</h3>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr class="text-center text-uppercase">
+        <th>User Id</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Role</th>
+        <th>Edit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of userDetails">
+        <td>{{user.userId}}</td>
+        <td>{{user.firstName}}</td>
+        <td>{{user.lastName}}</td>
+        <td>{{user.role}}</td>
+        <td><button (click)="openModal(user)">edit role</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
