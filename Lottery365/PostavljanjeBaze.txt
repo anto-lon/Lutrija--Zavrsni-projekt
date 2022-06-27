@@ -1,0 +1,130 @@
+USE [Lottery365]
+GO
+/****** Object:  Table [dbo].[Roles]    Script Date: 4/23/2022 8:59:25 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Roles](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [varchar](10) NOT NULL,
+ CONSTRAINT [PK_Roles] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[UserDrawNumberDetails]    Script Date: 4/23/2022 8:59:25 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[UserDrawNumberDetails](
+	[Id] [bigint] IDENTITY(1,1) NOT NULL,
+	[TicketNumber] [bigint] NOT NULL,
+	[Number] [int] NOT NULL,
+ CONSTRAINT [PK_UserDrawNumberDetails] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[UserLotteryDetails]    Script Date: 4/23/2022 8:59:25 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[UserLotteryDetails](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[TicketNumber] [bigint] NOT NULL,
+	[UserId] [int] NOT NULL,
+	[WheelNumber] [bigint] NOT NULL,
+	[Status] [varchar](50) NULL,
+ CONSTRAINT [PK_UserLotteryDetails] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
+ CONSTRAINT [IX_UserLotteryDetails] UNIQUE NONCLUSTERED 
+(
+	[TicketNumber] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Users]    Script Date: 4/23/2022 8:59:25 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Users](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[FirstName] [nvarchar](20) NOT NULL,
+	[LastName] [nvarchar](20) NOT NULL,
+	[EmailId] [nvarchar](20) NULL,
+	[Password] [nvarchar](50) NOT NULL,
+	[RoleId] [int] NOT NULL,
+ CONSTRAINT [PK_Users] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[WheelDrawNumberDetails]    Script Date: 4/23/2022 8:59:25 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[WheelDrawNumberDetails](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[WheelNumber] [bigint] NOT NULL,
+	[Number] [int] NOT NULL,
+ CONSTRAINT [PK_WheelDrawNumberDetails] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[WheelInfo]    Script Date: 4/23/2022 8:59:25 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[WheelInfo](
+	[Id] [bigint] IDENTITY(1,1) NOT NULL,
+	[WheelNumber] [bigint] NOT NULL,
+	[DrawDate] [date] NOT NULL,
+	[Active] [bit] NOT NULL,
+ CONSTRAINT [PK_WheelInfo] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
+ CONSTRAINT [IX_WheelInfo] UNIQUE NONCLUSTERED 
+(
+	[WheelNumber] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[UserLotteryDetails]  WITH CHECK ADD  CONSTRAINT [FK_UserLotteryDetails_Users] FOREIGN KEY([UserId])
+REFERENCES [dbo].[Users] ([Id])
+GO
+ALTER TABLE [dbo].[UserLotteryDetails] CHECK CONSTRAINT [FK_UserLotteryDetails_Users]
+GO
+ALTER TABLE [dbo].[UserLotteryDetails]  WITH CHECK ADD  CONSTRAINT [FK_UserLotteryDetails_WheelInfo] FOREIGN KEY([WheelNumber])
+REFERENCES [dbo].[WheelInfo] ([WheelNumber])
+GO
+ALTER TABLE [dbo].[UserLotteryDetails] CHECK CONSTRAINT [FK_UserLotteryDetails_WheelInfo]
+GO
+ALTER TABLE [dbo].[Users]  WITH CHECK ADD  CONSTRAINT [FK_Users_Roles] FOREIGN KEY([RoleId])
+REFERENCES [dbo].[Roles] ([Id])
+GO
+ALTER TABLE [dbo].[Users] CHECK CONSTRAINT [FK_Users_Roles]
+GO
+ALTER TABLE [dbo].[WheelDrawNumberDetails]  WITH CHECK ADD  CONSTRAINT [FK_WheelDrawNumberDetails_WheelInfo] FOREIGN KEY([WheelNumber])
+REFERENCES [dbo].[WheelInfo] ([WheelNumber])
+GO
+ALTER TABLE [dbo].[WheelDrawNumberDetails] CHECK CONSTRAINT [FK_WheelDrawNumberDetails_WheelInfo]
+GO
+ALTER TABLE [dbo].[WheelInfo]  WITH CHECK ADD  CONSTRAINT [FK_WheelInfo_WheelInfo] FOREIGN KEY([Id])
+REFERENCES [dbo].[WheelInfo] ([Id])
+GO
+ALTER TABLE [dbo].[WheelInfo] CHECK CONSTRAINT [FK_WheelInfo_WheelInfo]
+GO
